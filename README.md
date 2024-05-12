@@ -36,8 +36,8 @@ First approach is with Console views called from terminal.
 
 To execute (add prefix for docker-compose when not inside the container):
 ```
-php -f index.php
-docker-compose exec php-fpm php -f index.php
+php -f src/index.php
+docker-compose exec php-fpm php -f src/index.php
 ```
 
 To trigger tests:
