@@ -28,14 +28,23 @@ class Result
         $this->valuesProposed = $valuesProposed;
         $secretValues = $secretCombination->getValues();
         $unmatchedValues = $secretValues;
+        $valuesProposedToReview = $valuesProposed;
 
-        foreach ($valuesProposed as $key => $value) {
-            if (in_array($value, $secretValues)) {
-                unset($unmatchedValues[$key]);
-                ($secretValues[$key] === $value) ?
-                    $this->white++
-                    :
-                    $this->black++;
+        foreach ($valuesProposedToReview as $key => $value) {
+            if (in_array($value, $unmatchedValues)) {
+                if ($secretValues[$key] === $value) {
+                    $this->white++;
+                    unset($unmatchedValues[$key]);
+                    unset($valuesProposedToReview[$key]);
+                }
+            }
+        }
+
+        foreach ($valuesProposedToReview as $value) {
+            $pos = array_search($value, $unmatchedValues);
+            if ($pos !== false) {
+                $this->black++;
+                unset($unmatchedValues[$pos]);
             }
         }
     }
