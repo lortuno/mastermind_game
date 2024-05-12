@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Views\Console;
+use Game;
+
 class EndGameView
 {
     public function __construct(Game $game)

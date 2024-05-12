@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Views\Console;
+
+use Game;
+use InvalidCombinationError;
+use Exception;
+
 include_once('ErrorView.php');
 include_once('AttemptView.php');
 include_once('DifficultyView.php');

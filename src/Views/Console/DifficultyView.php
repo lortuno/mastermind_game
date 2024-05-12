@@ -1,6 +1,11 @@
 <?php
 
+namespace App\Views\Console;
+
+use Difficulty;
+use InvalidCombinationError;
 use Level\LevelInterface;
+use Throwable;
 
 class DifficultyView
 {
@@ -17,7 +22,7 @@ class DifficultyView
 
     private function promptDifficulty(): int
     {
-        return (int) readline('Introduce nivel dificultad: 1 (fácil) - 2 (normal) - 3 (difícil): ');
+        return (int)readline('Introduce nivel dificultad: 1 (fácil) - 2 (normal) - 3 (difícil): ');
     }
 
     /**

@@ -2,13 +2,18 @@ version: '1.0'
 
 services:
   web:
-    image: nginx:latest
+    build:
+      context: ./
+      dockerfile: docker/web/Dockerfile
     ports:
       - "8080:80"
       - "443:443"
     volumes:
-      - ./src:/var/www/html
+      - ./logs/nginx:/var/log/nginx:delegated
+      - ./src:/var/www/html:cached
     links:
+      - php-fpm
+    depends_on:
       - php-fpm
     networks:
       local-net:
@@ -18,7 +23,7 @@ services:
   php-fpm:
     build:
       context: ./
-      dockerfile: docker/Dockerfile
+      dockerfile: docker/php-fpm/Dockerfile
     volumes:
       - ./:/var/www/html
     networks:

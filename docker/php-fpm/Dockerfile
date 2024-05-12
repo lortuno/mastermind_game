@@ -3,9 +3,7 @@ FROM php:8.2-fpm-alpine3.17
 # Install essential build tools
 RUN apk add --no-cache \
     git \
-    yarn \
     autoconf \
-    make \
     openssl-dev
 
 
@@ -30,7 +28,7 @@ RUN echo '[PHP]\ndate.timezone = "Europe/Berlin"\n' > /usr/local/etc/php/conf.d/
 RUN echo 'memory_limit = 1G' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 RUN composer self-update --2;
 
-# setuo xdebug
+# setup xdebug
 
 RUN apk add --update --no-cache linux-headers
 
@@ -39,7 +37,10 @@ RUN apk add --no-cache $PHPIZE_DEPS \
     && docker-php-ext-enable xdebug
 
 
-ADD docker/xdebug.ini /usr/local/etc/php/conf.d/
+ADD docker/php-fpm/xdebug.ini /usr/local/etc/php/conf.d/
+
+COPY src/index.php /var/www/html/
+
 
 # init vendor
-# RUN cd /var/www/html && composer install/
+# RUN composer install/
