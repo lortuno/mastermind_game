@@ -17,7 +17,6 @@ php -S localhost:8000 -t src
 To start project with docker:
 ``
 docker-compose up -d --build
-docker-compose exec php-fpm php -S localhost:8080 -t src
 ``
 
 Then install composer:
@@ -31,13 +30,15 @@ To access the docker container:
 docker-compose exec php-fpm sh
 ``
 
+You can browse to http://web.local
+
 First approach is with Console views called from terminal.
 
 To execute (add prefix for docker-compose when not inside the container):
-``
-php -f src/index.php
-docker-compose exec php-fpm php -f src/index.php
-``
+```
+php -f index.php
+docker-compose exec php-fpm php -f index.php
+```
 
 To trigger tests:
 
@@ -66,7 +67,7 @@ docker-compose exec php-fpm php --ini
 ````
 or php version
 ``
-docker-compose exec php-fpm  php --version  
+docker-compose exec php-fpm php --version  
 ``
 
 To stop it: 

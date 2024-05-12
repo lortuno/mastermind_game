@@ -9,7 +9,7 @@ include_once('Controller/GameWebController.php');
 
 use App\Controller\GameConsoleController;
 use App\Controller\GameWebController;
+//
+new GameWebController();
 
-new GameConsoleController();
-
-phpinfo();
+//phpinfo();
